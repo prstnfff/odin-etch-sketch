@@ -1,5 +1,6 @@
 let containerDiv = document.querySelector('.container')
 let resetButton = document.querySelector('.grid-reset')
+let colorInput = document.querySelector('.color-input')
 
 function createGrid(size){
 
@@ -29,7 +30,7 @@ function setUpListeners(){
 
         gridPiece.addEventListener('mouseover', event => {
 
-            event.target.setAttribute('style', 'background-color:black')
+            event.target.setAttribute('style', `background-color:${colorInput.value}`)
         })
     })
 }
