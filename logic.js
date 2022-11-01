@@ -22,3 +22,12 @@ for(let row = 1; row <= rows; row++){
 
     containerDiv.insertAdjacentHTML('beforeend', newRow)
 }
+
+
+document.querySelectorAll('.gridPanel').forEach( gridPiece => {
+
+    gridPiece.addEventListener('mouseover', event => {
+
+        event.target.setAttribute('style', 'background-color:black')
+    })
+})
