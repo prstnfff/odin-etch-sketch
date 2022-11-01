@@ -1,33 +1,55 @@
-
-let rows = 16
-let columns = 16
-
 let containerDiv = document.querySelector('.container')
+let resetButton = document.querySelector('.grid-reset')
 
-console.log(containerDiv)
+function createGrid(size){
 
-console.log('row')
+    containerDiv.innerHTML = ''
 
-for(let row = 1; row <= rows; row++){
-
-    console.log(row)
-
-    let newRow = "<div class = 'row'>"
-    for(let col = 1; col <= columns; col++){
-
-        newRow += "<div class = 'gridPanel'></div>"
-
+    for(let row = 1; row <= size; row++){
+    
+        let newRow = "<div class = 'row'>"
+        for(let col = 1; col <= size; col++){
+    
+            newRow += "<div class = 'gridPanel'></div>"
+    
+        }
+        newRow += "</div>"
+    
+        containerDiv.insertAdjacentHTML('beforeend', newRow)
     }
-    newRow += "</div>"
+    setUpListeners()
 
-    containerDiv.insertAdjacentHTML('beforeend', newRow)
 }
 
+createGrid(25)
 
-document.querySelectorAll('.gridPanel').forEach( gridPiece => {
 
-    gridPiece.addEventListener('mouseover', event => {
+function setUpListeners(){
+    document.querySelectorAll('.gridPanel').forEach( gridPiece => {
 
-        event.target.setAttribute('style', 'background-color:black')
+        gridPiece.addEventListener('mouseover', event => {
+
+            event.target.setAttribute('style', 'background-color:black')
+        })
     })
+}
+
+resetButton.addEventListener( 'click', event => {
+
+    
+    let value = 0
+
+    while((!value || value < 1 || value > 100) && value != null){
+        let inp = prompt("What size Grid do you want to create?\n Enter a number between 1 and 100.", 25)
+
+        if (inp === null) {break}
+
+        value = Number.parseInt(inp)
+    }
+
+    if(value){
+        createGrid(value)
+    }
+    
 })
+
